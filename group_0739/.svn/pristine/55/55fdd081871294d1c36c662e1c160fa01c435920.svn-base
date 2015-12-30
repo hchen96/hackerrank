@@ -1,0 +1,183 @@
+package pII;
+
+
+import java.io.FileNotFoundException;
+import java.io.Serializable;
+
+
+/**
+ * @author group_0739
+ *
+ *This class represents a user of the system who can add clients and 
+ *flights into the infocentre. It is responsible for uploading client and 
+ *flight information and also editing and removing client information and 
+ *flights from infocentre.
+ */
+public class Admin extends User implements Serializable{
+
+	private static final long serialVersionUID = -3984839301047153116L;
+	/**
+	 * The admin's email.
+	 */
+	private String email; 
+	/**
+	 * Creates an admin object given their first name, last name 
+	 * and the infocentre they belong to.
+	 * @param First  The admin's first name.
+	 * @param Last   The admin's last name.
+	 * @param i      The infocentre the admin belongs to.
+	 */
+	public Admin(String first, String last, Infocentre i, String email, String username,String password) {
+		super(first, last, i);
+		this.email = email;
+		this.getInfoCentre().AddAdmin(this);
+		
+	}
+	
+	/**
+	 * Changes client information given the client, their information to be 
+	 * edited, and the value of what it is being changed to.
+	 * @param client     The client whose info is being edited.
+	 * @param parameter  The type of info that is to be edited.
+	 * @param value      The value that the info is being changed to.
+	 */
+	public void editClientInfo(Client client, String parameter, int value){
+		try {
+			super.getInfoCentre().EditClient(client, parameter, value);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Changes client information given the client, their information 
+	 * to be edited, and the value of what it is being changed to.
+	 * @param client     The client whose info is being edited.
+	 * @param parameter  The type of info that is to be edited.
+	 * @param value      The value that the info is being changed to.
+	 */
+	public void editClientInfo(Client client, String parameter, String value){
+		try {
+			super.getInfoCentre().EditClient(client, parameter, value);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Uploads clients from a file given the file path.
+	 * @param path   The file path.
+	 * @throws FileNotFoundException
+	 * @throws InvalidInputException 
+	 * @throws NumberFormatException 
+	 */
+	public void uploadClients(String path)throws FileNotFoundException,
+							NumberFormatException, InvalidInputException{
+		this.getInfoCentre().uploadClients(path);
+	
+	}
+	
+	/**
+	 * Takes in a csv file full of flights and uploads it to the infocentre.
+	 * @param path   The file path.
+	 * @throws FileNotFoundException
+	 * @throws InvalidInputException 
+	 * @throws NumberFormatException 
+	 */
+	public void adminUploadFlights(String path)throws FileNotFoundException, 
+							NumberFormatException, InvalidInputException{
+		this.getInfoCentre().uploadFlights(path);
+	}
+	
+	/**
+	 * Adds an admin to the infocentre given an admin.
+	 * @param admin     The admin to add.
+	 */
+	public void addAdmin(Admin admin){
+		this.getInfoCentre().AddAdmin(admin);
+	}
+	
+	/**
+	 * Adds a client to infocentre given a client.
+	 * @param client    The client to add.
+	 */
+	public void addClient(Client client){
+		this.getInfoCentre().AddClient(client);
+	}
+	
+	/**
+	 * From the Admin's side of the application, it accesses the infocentre
+	 * and adds to the infocentre's ArrayList of Flights.
+	 * @param f         The flight to be added.
+	 */
+	public void addFlight(Flight f){
+		this.getInfoCentre().AddFlight(f);
+	}
+	
+	/**
+	 * Removes a flight from the infocentre given a flight.
+	 * @param f         The flight to remove.
+	 */
+	public void removeFlight(Flight f){
+		this.getInfoCentre().RemoveFlight(f);
+	}
+	
+	/**
+	 * Gets client info in string format given the client.
+	 * @param c           The client to get the info of
+	 * @return The given client's information.
+	 */
+	public String getClientInfo(Client c){
+		return c.toString();
+	}
+	
+	/**
+	 * Returns a String representation of the Admin's full name.
+	 * @return Admin's full name as a String Representation.
+	 */
+	public String toString(){
+		return this.getFirstName() + " " + this.getLastName() + ".";
+	}
+
+	/**
+	 * Returns a string representation of the admin's email.
+	 * @return email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	
+	/**
+	 * Searches for a client and books an itinerary for the client if 
+	 * the client exists in the database else does nothing.
+	 * @param client 	The client the admin is trying to book an itinerary for.
+	 * @param i			The itinerary the client want to book. 
+	 */
+	public void bookItineraryForClient(Client client, Itinerary i){
+		//Check if client exists in database.
+		for (Client c : this.getInfoCentre().getClients()){
+			if (c.getEmail().equals(client.getEmail()))
+				c.bookItinerary(i);
+		}
+		
+	}
+	
+	
+	/**
+	 * Searches for a client and shows and the client's booked itinerary if 
+	 * the client exists in the database else does nothing.
+	 * @param client 	The client whose booked itinerary we want to see.
+	 * @return 			returns a string representation of all the booked 
+	 * 					itinerary client has.
+	 */
+	public String viewItineraryForClient(Client client){
+		//Check if client exist in database.
+		for (Client c : this.getInfoCentre().getClients()){
+			if (c.getEmail().equals(client.getEmail()))
+				// might have to be changed depending on what outputs we need undecided made really long so we will notice when we clean up javadocs
+				return c.getBookedItineraries().toString();
+		}
+		return null;
+	}
+
+}

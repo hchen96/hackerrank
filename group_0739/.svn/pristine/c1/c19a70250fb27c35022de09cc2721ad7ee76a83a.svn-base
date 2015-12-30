@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="group_0739.piii.EditFlight"
+    tools:showIn="@layout/activity_edit_flight">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flightNumber"
+        android:text = "@string/flight_number"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/departureDateTime"
+        android:text = "@string/departure_date_time"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/flightNumberHint"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/arrivalDateTime"
+        android:text = "@string/arrival_date_time"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/departureDateTimeHint"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/airline"
+        android:text = "@string/airline"
+        android:layout_below="@+id/arrivalDateTimeHint"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/origin"
+        android:text = "@string/origin"
+        android:layout_below="@+id/airlineHint"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/destination"
+        android:text = "@string/destination"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/originHint"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cost"
+        android:text = "@string/cost"
+        android:layout_below="@+id/destinationHint"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numSeats"
+        android:text = "@string/num_seats"
+        android:layout_marginBottom="73dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/cost"
+        android:layout_alignStart="@+id/cost" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flightNumberHint"
+
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/departureDateTimeHint"
+        android:layout_alignBottom="@+id/departureDateTime"
+        android:layout_alignLeft="@+id/flightNumberHint"
+        android:layout_alignStart="@+id/flightNumberHint" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/arrivalDateTimeHint"
+        android:layout_alignBottom="@+id/arrivalDateTime"
+        android:layout_alignLeft="@+id/departureDateTimeHint"
+        android:layout_alignStart="@+id/departureDateTimeHint" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/airlineHint"
+        android:layout_alignTop="@+id/airline"
+        android:layout_alignLeft="@+id/arrivalDateTimeHint"
+        android:layout_alignStart="@+id/arrivalDateTimeHint" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/originHint"
+        android:layout_alignBaseline="@+id/origin"
+        android:layout_alignBottom="@+id/origin"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/destinationHint"
+        android:layout_alignTop="@+id/destination"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/costHint"
+        android:layout_alignTop="@+id/cost"
+        android:layout_centerHorizontal="true" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numSeatsHint"
+        android:layout_alignTop="@+id/numSeats"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_flight_info"
+        android:id="@+id/changeFlightInfo"
+        android:onClick="@string/edit_flight_info"
+        android:layout_alignTop="@+id/costHint"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

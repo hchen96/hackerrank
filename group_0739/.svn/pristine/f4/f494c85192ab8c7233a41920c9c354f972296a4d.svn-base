@@ -1,0 +1,36 @@
+Minutes for Planning Meeting 11/23/15:
+
+We all met to discuss how we were going to implement this phase of the project. 
+It was decided that we would all meet together on Friday and attempt to finish this phase in one go
+as we had trouble finding a good way to divide the work and everyone was on board with this idea.
+In addition, we had very few changes to make to our design from pII, so most of our time would be spent
+designing the app in Android Studio.
+Changes that need to be made to pII code:
+Allow admin to search for itineraries
+Allow admin to book itinerary for client
+Add numSeats variable to flights and keep track of fullness of flights - make sure that flight is never overbooked
+Create password file and add login check for clients vs. admins.
+
+Next meeting scheduled for: 11/27/15
+
+Minutes for Status Meeting 11/27/15:
+
+We met for a meeting/work session.  After some configuration we found out that only Adam's version of Android Studio
+was fully functioning.  As a result, we were working on one computer for the duration of the meeting. 
+We managed to successfully import all our java files from eclipse into android studio and transitioned from a login
+screen to a home screen for the admin by checking whether the password entered was valid.  We also created a new admin
+if there was not already one in the infocentre.  We ran into problems when we tried to enter flight info from a file.
+We originally could not find the directory that the file was being sent to.  After we fixed that error, we found the file
+on the emulator but were unable to pull the file onto the computer as android studio gave the message that the file was null.
+After attempting to fix this problem for two hours, we decided to go to office hours and ask for assistance.  The next meeting was 
+scheduled for 11/30/15 with the knowledge that Adam would likely not be able to attend due to committments to another course.
+To complete for next meeting:
+H - ask about file issue during next office hours
+J,D - research how to use various android studio items so we can figure out how to best display the data
+A - research using a list view to display and edit flights
+J,D,H - ensure that the comitted app runs on their versions of Android Studio
+
+Note: As a team we realized that the file error was standing in our way of quickly completing the entire program.
+Once we can get the flight information into the system, connecting the app to the back-end proved fairly straightforward for the 
+parts that we already completed. In addition, completing the client side of the app is very similar to the admin side, but with
+fewer responsibilities.  

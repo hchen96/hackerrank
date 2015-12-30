@@ -1,0 +1,53 @@
+c4chenba I accept these guidelines and intend to fulfill them.
+g5cappar I accept these guidelines and intend to fulfill them.
+c3chinji I accept these guidelines and intend to fulfill thme
+c5barbha I accept these guidelines and intend to fulfill them.
+
+Guidelines:
+
+Methods of Communication:
+We have created a facebook chat - CSC207 Project Group.  All group-based communication should go through here.
+Meetings will be conducted either in person at an agreed upon location prior to the meeting, or via Skype.
+
+Communication Response Times:
+All team members are expected to respond in a timely fashion to messages directed at them, or at least let other members know
+that they are busy and give an approximate time/date when they will be able to respond.
+
+Meeting Attendance:
+Attendance to all meeting is mandatory unless there is an unforseen circumstance or the team member has stated in advance 
+that they will be unable to attend the meeting.  In the latter case, they are expected to provide this information at the previous
+meeting which is when the next meeting will be determined.  In an effort to have full group strength at meetings, they will be scheduled
+for the time when the most group members are available.
+
+Running Meetings:
+Ideally, meetings will be face-to-face, but in the event that one or more team members cannot be physically present, Skype
+will be used for these cases.
+
+Meeting Preparation:
+Team members are expected to report on their current status for their assigned task in addition to any problems/obstacles
+they may be facing.  Ideally, communication between all members should be ongoing via the facebook chat and thus each member should
+be aware of what the other is doing and their current status.  As such, meetings are largely informal and mainly to discuss errors/debugging
+and assigning tasks to be completed for the next meeting.
+
+Version Control:
+All changes to code, whether major or minor should be comitted. Files that are not required for the final submission should
+not be comitted and can instead be shared via the facebook chat or Skype.  Log messages should be descriptive of what the team 
+member is comitting, but can be of slightly lower quality for minor or trivial commits.  
+
+Division of Work:
+We will strive to divide the work as evenly as possible.  Ideally, team members will volunteer for certain tasks, but in the
+event that there is a conflict/ no one wants to do a certain component, then a majority vote will be used to decide task assignments.
+
+Submitting Assignments:
+As long as the team member's component is finished by the start of the next meeting, then they have completed their obligation.
+Despite this, we will encourage frequent commits and status updates via facebook so that other team members can utitlize the
+new code or help with debugging. Until one team member fails to complete their component on time, we will work off the honour system
+where it is assumed that all members will pull their weight.  When this method fails, the other team members will take turns
+ensuring that the problematic team member completes their assignments on time.
+  
+
+Contingency Planning:
+If a team member drops out, then we will contact the instructor and organize a meeting of the remaining members to 
+discuss next steps.  If a team member does not adhere to the above rules, but provides a reasonable explanation, then the remaining
+members will monitor that team member to ensure it does not happen again.  If the team member has no valid explanation, then the team will seek
+guidance from the instructor.  The team will also notify the instructor if one or more members is academically dishonest.

@@ -1,0 +1,94 @@
+package group_0739.piii;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.EditText;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+public class EditPersonalInfo extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_personal_info);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        Intent intent = getIntent();
+        final Client newClient = (Client) intent.getSerializableExtra("UserKey");
+
+        EditText editFirstName = (EditText) findViewById(R.id.editFirstName);
+        EditText editLastName = (EditText) findViewById(R.id.editLastName);
+        EditText editEmail = (EditText) findViewById(R.id.editEmail);
+        EditText editAddress = (EditText) findViewById(R.id.editAddress);
+        EditText editCreditCardNumber = (EditText) findViewById(R.id.editCreditCardNumber);
+        EditText editExpiryDate = (EditText) findViewById(R.id.editExpiryDate);
+
+
+
+        editFirstName.setText(newClient.getFirstName());
+        editLastName.setText(newClient.getLastName());
+        editEmail.setText(newClient.getEmail());
+        editAddress.setText(newClient.getAddress());
+        String creditCardNumber = Long.toString(newClient.getCreditCardNumber());
+        editCreditCardNumber.setText(creditCardNumber);
+        editExpiryDate.setText(newClient.getExpiryDate());
+
+    }
+
+    public void editClientInfo(View view) throws InvalidInputException,IOException {
+        Intent intent = getIntent();
+
+        final Client newClient= (Client) intent.getSerializableExtra("UserKey");
+
+        EditText editFirstName = (EditText) findViewById(R.id.editFirstName);
+        EditText editLastName = (EditText) findViewById(R.id.editLastName);
+        EditText editEmail = (EditText) findViewById(R.id.editEmail);
+        EditText editAddress = (EditText) findViewById(R.id.editAddress);
+        EditText editCreditCardNumber = (EditText) findViewById(R.id.editCreditCardNumber);
+        EditText editExpiryDate = (EditText) findViewById(R.id.editExpiryDate);
+
+
+        newClient.setFirstName(editFirstName.getText().toString());
+        newClient.setLastName(editLastName.getText().toString());
+        newClient.setEmail(editEmail.getText().toString());
+        newClient.setAddress(editAddress.getText().toString());
+        newClient.setCreditCardNumber(Long.parseLong(editCreditCardNumber.getText().toString()));
+        newClient.setExpiryDate(editExpiryDate.getText().toString());
+
+
+        File appdir = this.getApplicationContext().getFilesDir();
+
+        File savedInfoCentre = new File(appdir, "Infocentre.ser");
+        FileOutputStream fos = new FileOutputStream(savedInfoCentre.toString());
+        ObjectOutputStream os = new ObjectOutputStream(fos);
+        os.writeObject(newClient.getInfoCentre());
+        os.close();
+        fos.close();
+
+
+        Intent intent2 = new Intent(this, ClientHome.class);
+        intent2.putExtra("UserKey", newClient);
+        startActivity(intent2);
+
+    }
+
+}

@@ -1,0 +1,72 @@
+Minutes for Planning Meeting 11/23/15:
+
+We all met to discuss how we were going to implement this phase of the project. 
+It was decided that we would all meet together on Friday and attempt to finish this phase in one go
+as we had trouble finding a good way to divide the work and everyone was on board with this idea.
+In addition, we had very few changes to make to our design from pII, so most of our time would be spent
+designing the app in Android Studio.
+Changes that need to be made to pII code:
+Allow admin to search for itineraries
+Allow admin to book itinerary for client
+Add numSeats variable to flights and keep track of fullness of flights - make sure that flight is never overbooked
+Create password file and add login check for clients vs. admins.
+
+Next meeting scheduled for: 11/27/15
+
+Minutes for Status Meeting 11/27/15:
+
+We met for a meeting/work session.  After some configuration we found out that only Adam's version of Android Studio
+was fully functioning.  As a result, we were working on one computer for the duration of the meeting. 
+We managed to successfully import all our java files from eclipse into android studio and transitioned from a login
+screen to a home screen for the admin by checking whether the password entered was valid.  We also created a new admin
+if there was not already one in the infocentre.  We ran into problems when we tried to enter flight info from a file.
+We originally could not find the directory that the file was being sent to.  After we fixed that error, we found the file
+on the emulator but were unable to pull the file onto the computer as android studio gave the message that the file was null.
+After attempting to fix this problem for two hours, we decided to go to office hours and ask for assistance.  The next meeting was 
+scheduled for 11/30/15 with the knowledge that Adam would likely not be able to attend due to commitments to another course.
+To complete for next meeting:
+H - ask about file issue during next office hours
+J,D - research how to use various android studio items so we can figure out how to best display the data
+A - research using a list view to display and edit flights
+J,D,H - ensure that the committed app runs on their versions of Android Studio
+
+Note: As a team we realized that the file error was standing in our way of quickly completing the entire program.
+Once we can get the flight information into the system, connecting the app to the back-end proved fairly straightforward for the 
+parts that we already completed. In addition, completing the client side of the app is very similar to the admin side, but with
+fewer responsibilities.  
+
+Minutes for Status Meeting 11/30/15:
+
+Adam was able to attend the meeting, but Darshan had an emergency and was unable to come.  We managed to finish everything
+we wanted to for the demo, which was a login for admin, allowing the admin to view and edit flights, and saving the edited
+data in a serialized file.  This meeting took longer than expected, but was ultimately very productive as we had to 
+familiarize ourselves with the details of android studio.  All the remaining parts of the app that need to be implemented are
+variations on the code we have already written for the demo.  As our demo is tomorrow after our CSC207 lab, we decided to
+have a brief meeting before the lab to get Darshan up to speed on our progress and to discuss next steps.  As a result
+of these back-to-back meetings, no team member was assigned any work to complete for the next meeting.
+
+Next meeting scheduled for 12/1/15
+
+Minutes for Planning Meeting 12/1/15:
+The demo went well and we were able to answer all the questions easily.  We also managed to fix the problem where some of
+our textviews and edittexts were squished together with help from the TA.  Harry reported that instructions would be
+posted tonight on how to share the android studio project with other team members so we aren't stuck working on only
+Adam's computer.  Our next meeting to try and finish most of the app will be on 12/4/15.  Until we are able to share the 
+app, we will not assign tasks to be completed as of yet.  They will be assigned over our facebook group.
+
+Next meeting scheduled for 12/4/15
+
+Minues for Status Meeting 12/4/15:
+We are still unable to get Android Studio working on either cdf or on any computer except for Adam's.  We managed to fix
+the error in our backend code that cause an assertion error in the autotests for PII.  As well, we have implemented
+a client home and have allowed both clients and admins to edit client information.  Based on our situation, it was
+decided the Harry, Jay, and Darshan would write the java code for each acitivty and Adam would be responsible for
+the XML and putting everything together in Android Studio. 
+Harry -> figure out how to load information from a file pushed onto the phone
+Jay & Darshan -> Work on the CRC, Readme, and the AS code for allowing both clients and users to search and book itineraries
+Adam -> work on XML and put all the code together
+The next meeting was set for 12/7/15.
+
+Minutes for Status Meeting 12/7/15:
+
+

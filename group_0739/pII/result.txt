@@ -1,0 +1,55 @@
+Java Automatic Marker 0.1.0
+
+********************************************************************************
+*                          Tests results for DriverTest                        *
+********************************************************************************
+Test case for the getItineraries(String date, String origin, String 
+destination) method
+several itineraries with up to three flights (checking for extra results)
+ failed because of an AssertionError.
+    Why do I have an AssertionError?
+        Your function/method returned the wrong value or had an unexpected 
+        side-effect. For example, it may have modified a value it should not 
+        have.
+    Details:
+        getItineraries(String, String, String) didn't find any itineraries.
+
+Test case for the getItineraries(String date, String origin, String 
+destination) method
+several itineraries with up to three flights (checking that all matches were 
+found)
+ failed because of an AssertionError.
+    Why do I have an AssertionError?
+        Your function/method returned the wrong value or had an unexpected 
+        side-effect. For example, it may have modified a value it should not 
+        have.
+    Details:
+        getItineraries(String, String, String) didn't find all of the expected 
+        itineraries. Expected itinerary: "534,2014-11-29 16:50,2014-11-30 
+        04:07,Turboprop Airline,Heathrow,LAX156,2014-11-30 05:10,2014-11-30 
+        07:30,Superprop Airways,LAX,Portland55014:40" in output, which was: ""
+
+Test case for the getItinerariesSortedByCost(String date, String origin, String 
+destination) method
+ failed because of a NullPointerException.
+    Why do I have a NullPointerException?
+        Your code attempted to call a method on an variable or field that 
+        contained the null value.
+
+Test case for the getItinerariesSortedByTime(String date, String origin, String 
+destination) method
+ failed because of a NullPointerException.
+    Why do I have a NullPointerException?
+        Your code attempted to call a method on an variable or field that 
+        contained the null value.
+
+
+********************************************************************************
+*                        SUMMARY @ 2015/11/19 02:52:00                         *
+********************************************************************************
+    Tests passed: 9
+    Tests run: 13
+    Note: If you did not pass all the tests, you still have 0% on this 
+    exercise. If you have several NoClassDefFoundError, that may be because 
+    your program did not compile. Check the exercise FAQ on Piazza for more 
+    details before posting on Piazza.

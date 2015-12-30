@@ -1,0 +1,116 @@
+package group_0739.piii;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+/**
+ *
+ * @author group_0739
+ *
+ * This class represents a Directed Graph used Itinerary Generator.
+ * A Direct Graph has no multiple edges and or loops. Simply, it is "directed"
+ * towards one direction.
+ * @param <T>         A Generic Variable
+ */
+public class DirectedGraph<T> {
+
+    /**
+     * A Hashmap of with the key representing the adjacent nodes
+     *  of a given node.
+     */
+    private Map<T, Set<T>> adjacentNodes;
+    /**
+     * A set of nodes.
+     */
+    private Set<T> SetOfNodes;
+
+    /**
+     * Constructs a new DirectedGraph with adjacentNodes and SetofNodes.
+     * adjacentNodes is a Hashmap with value Set<T> and SetOfNodes
+     * which is a treeset.
+     */
+    public DirectedGraph() {
+        adjacentNodes = new HashMap<T, Set<T>>();
+        SetOfNodes = new TreeSet<T>();
+    }
+
+    /**
+     * Sets the setOfNodes to setOfNodes.
+     * @param setOfNodes       A set of nodes.
+     */
+    public void setSetOfNodes(Set<T> setOfNodes) {
+        SetOfNodes = setOfNodes;
+    }
+
+    /**
+     * Gets and returns all the adjacentNodes given a generic variable.
+     * @return All adjacent nodes.
+     */
+    public Map<T, Set<T>> getAdjacentNodes() {
+        return adjacentNodes;
+    }
+
+    /**
+     * Returns a set of all SetofNodes given a node.
+     * @return A set of Nodes.
+     */
+    public Set<T> getSetOfNodes() {
+        return SetOfNodes;
+    }
+
+    /**
+     * Adds a generic variable called value to the SetOfNodes.
+     * @param value      The value given.
+     */
+    public void add(T value){
+
+        if(!SetOfNodes.contains(value)){
+            SetOfNodes.add(value);
+            Set<T> newNodeSet = new TreeSet<T>();
+            adjacentNodes.put(value, newNodeSet);
+        }
+    }
+
+    /**
+     * Adds an edge between two given nodes. Will not add edge if each node
+     * has the other node in their adjacentNodes.
+     * @param node1       Given node number 1.
+     * @param node2       Given node number 2.
+     */
+    public void addEdge(T node1, T node2) {
+
+        if(!adjacentNodes.get(node1).contains(node2)){
+            adjacentNodes.get(node1).add(node2);
+        }
+    }
+
+    /**
+     * Returns a set of nodes that have an edge connection to a given node
+     * @param node        Given node.
+     * @return A set of nodes connected by an edge.
+     */
+    public Set<T> getNeighbours(T node){
+        return adjacentNodes.get(node);
+    }
+
+
+    @Override
+    /**
+     * Returns a String representation of the DirectedGraph.
+     * @return String representation of DirectedGraph
+     */
+    public String toString() {
+
+        String result = "";
+        for (T node: getSetOfNodes()) {
+            result += node + " is adjacent to: ";
+            for(T neighbour: getNeighbours(node)) {
+                result += neighbour + " ";
+            }
+            result += "\n";
+        }
+        return result;
+    }
+
+}

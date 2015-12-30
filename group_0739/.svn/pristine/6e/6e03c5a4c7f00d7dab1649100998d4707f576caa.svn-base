@@ -1,0 +1,236 @@
+package group_0739.piii;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+/**
+ * @author group_0739
+ * This Class represents an abstract user of the application.
+ * This class is responsible for all the methods and instance
+ * variables that are shared between Client and Admin,
+ * such as searching the flights, the user's first and last name, and the
+ * infocentre that they belong to.
+ *
+ */
+public abstract class User implements Serializable{
+
+    private static final long serialVersionUID = -3490239517537283653L;
+    //instance variables
+    /**
+     * The user's first name.
+     */
+    private String firstName;
+    /**
+     * The user's last name.
+     */
+    private String lastName;
+    /**
+     * The infocentre this user belongs to.
+     */
+    private Infocentre infoCentre;
+
+    /**
+     * Constructs a new user given their first name, last name and
+     * infocentre they belong to.
+     *
+     * @param first    the first name of the user.
+     * @param last     the last name of the user.
+     * @param i        the infocenter the user belongs to.
+     */
+    public User(String first, String last, Infocentre i){
+        //this.username = username;
+        //this.password = pass;
+        this.firstName = first;
+        this.lastName = last;
+        this.infoCentre = i;
+    }
+
+    /**
+     * Returns the users first name.
+     * @return The firstName.
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Changes to users first name to the one given.
+     * @param firstName The firstName to set.
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * Returns the users last name.
+     * @return The lastName.
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Changes the users last name to the one given.
+     * @param lastName The lastName to set.
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * Returns the infocentre this user belongs to.
+     * @return The infoCentre.
+     */
+    public Infocentre getInfoCentre(){
+        return this.infoCentre;
+    }
+
+
+    /**
+     * Returns all the flights in the system that depart on departureDate,
+     * and fly from origin to destination.
+     * @param departureDate		The date of departure that is used to
+     * 							filter flights.
+     * @param origin			The origin that is used to filter flights.
+     * @param destination		The destination that is used to filter flights.
+     * @return					An ArrayList of all the flights in the system
+     * 							 that depart on departureDate,
+     * 							and fly from origin to destination.
+     */
+    public ArrayList<Flight> searchFlights(String departureDate,
+                                           String origin, String destination){
+        return this.getInfoCentre().searchFlights(departureDate,
+                origin, destination);
+    }
+
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((firstName == null) ? 0 :
+                firstName.hashCode());
+        result = prime * result + ((lastName == null) ? 0 :
+                lastName.hashCode());
+        return result;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        User other = (User) obj;
+        if (firstName == null) {
+            if (other.firstName != null) {
+                return false;
+            }
+        } else if (!firstName.equals(other.firstName)) {
+            return false;
+        }
+        if (lastName == null) {
+            if (other.lastName != null) {
+                return false;
+            }
+        } else if (!lastName.equals(other.lastName)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns an ArrayList of the all the Itineraries that match
+     * the description given by the Client. This accesses an
+     * itinerary generator that collects all the itineraries.
+     *
+     * @param departureDate     The Client's requested departure date.
+     * @param origin            The Client's requested origin city.
+     * @param destination       The Client's requested destination city.
+     *
+     * @return The Client's requested ArrayList of Itineraries that matches
+     * his preferences given.
+     */
+
+    public ArrayList<Itinerary> searchForItinerary(String departureDate,
+                                                   String origin, String destination){
+        ItineraryGenerator iG = new ItineraryGenerator(this.getInfoCentre().allFlights(this.getInfoCentre().getFlights()));
+        return iG.listAllItineraries(origin, destination, departureDate);
+
+    }
+
+    /**
+     * Sorts an ArrayList of itineraries based on the value of filter
+     * and returns the sorted list.
+     *
+     * @param itineraries				The ArrayList of itineraries
+     * 									to be sorted.
+     * @param filter					The filter to sort the itineraries by
+     * 									(either cost or travel time)
+     * @return							The ArrayList sorted according
+     * 									to filter.
+     */
+    public ArrayList<Itinerary> displaySortedItineraries(
+            ArrayList<Itinerary> itineraries, String filter){
+
+        try{
+            if(filter.equals("cost") || filter.equals("travel time")){
+                //do nothing
+            }
+            else {
+                throw new InvalidInputException("Filter must be either"
+                        + " cost or travel time.");
+            }
+        }
+        catch(InvalidInputException e){
+
+        }
+        if(filter.equals("cost")){
+
+            //Bubble sorts itineraries based on cost.
+            for (int c = 0; c < ( itineraries.size() - 1 ); c++) {
+                for (int d = 0; d < itineraries.size() - c - 1; d++) {
+
+                    // if the next item has a lower cost, swap them.
+                    if (itineraries.get(d).getTotalCost() >
+                            itineraries.get(d + 1).getTotalCost())
+                    {
+                        Itinerary swap = itineraries.get(d);
+                        itineraries.set(d, itineraries.get(d + 1));
+                        itineraries.set(d+1, swap);
+                    }
+                }
+            }
+        }
+        else{
+            //Bubble sorts itineraries based on total travel time.
+            for (int c = 0; c < ( itineraries.size() - 1 ); c++) {
+                for (int d = 0; d < itineraries.size() - c - 1; d++) {
+                    // if the next item has a lower travel time, swap them.
+                    if (itineraries.get(d).getTotalTraveTime() >
+                            itineraries.get(d + 1).getTotalTraveTime())
+                    {
+                        Itinerary swap = itineraries.get(d);
+                        itineraries.set(d, itineraries.get(d + 1));
+                        itineraries.set(d+1, swap);
+                    }
+                }
+            }
+        }
+        return itineraries;
+    }
+
+
+}
+

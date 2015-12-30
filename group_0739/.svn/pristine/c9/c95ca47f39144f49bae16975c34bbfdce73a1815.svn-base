@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="group_0739.piii"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="23" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="group_0739.piii.ViewFlights"
+            android:label="@string/title_activity_admin_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.EditFlight"
+            android:label="@string/title_activity_edit_flight"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.ClientHome"
+            android:label="@string/title_activity_client_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.BookedItineraries"
+            android:label="@string/title_activity_booked_itineraries"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.SearchItineraries"
+            android:label="@string/title_activity_search_itineraries"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.AdminHome"
+            android:label="@string/title_activity_admin_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.DisplayAnyClientProfile"
+            android:label="@string/title_activity_display_any_client_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.EditClientInfo"
+            android:label="@string/title_activity_edit_client_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.EditPersonalInfo"
+            android:label="@string/title_activity_edit_personal_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.DisplayItineraries"
+            android:label="@string/title_activity_display_itineraries"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.BookItineraryAdmin"
+            android:label="@string/title_activity_book_itinerary_admin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.SearchItinerariesClient"
+            android:label="@string/title_activity_search_itineraries_client"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.DisplayItinerariesClient"
+            android:label="@string/title_activity_display_itineraries_client"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.SearchFlights"
+            android:label="@string/title_activity_search_flights"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.DisplayFlights"
+            android:label="@string/title_activity_display_flights"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.ViewBookedItineraries"
+            android:label="@string/title_activity_view_booked_itineraries"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.ViewClient"
+            android:label="@string/title_activity_view_client"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.UploadFlights"
+            android:label="@string/title_activity_upload_flights"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="group_0739.piii.UploadClients"
+            android:label="@string/title_activity_upload_clients"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
+
+</manifest>

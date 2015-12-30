@@ -1,0 +1,99 @@
+package group_0739.piii;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.EditText;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectOutputStream;
+
+public class UploadClients extends AppCompatActivity {
+
+    private EditText filePath;
+    @Override
+    
+    /**
+     * This function puts the default file path into the edit text view when the activity
+     * is created.
+     */
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_upload_clients);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        
+        //puts the file path to the app's data into the edit text view
+        filePath = (EditText) findViewById(R.id.filePath);
+        File appdir = this.getApplicationContext().getFilesDir();
+        filePath.setText(appdir.toString());
+
+    }
+
+    /**
+     * This function uploads the client info when the update button is tapped.
+     * 
+     * @param View view the view for this method
+     */
+    public void uploadClientInfo(View view) throws InvalidInputException,IOException {
+    	//get the admin's info
+        Intent intent = getIntent();
+        final Admin newAdmin = (Admin) intent.getSerializableExtra("UserKey");
+        
+        //this is the file path to the file the admin wants to upload from
+        filePath = (EditText) findViewById(R.id.filePath);
+
+        InputStream fileToRead = new FileInputStream(filePath.getText().toString());
+        
+        //upload the clients
+        newAdmin.uploadClients(fileToRead);
+
+        fileToRead.close();
+        
+        //save the state of the infocentre after the upload
+        File appdir = this.getApplicationContext().getFilesDir();
+        File savedInfoCentre = new File(appdir, "Infocentre.ser");
+        FileOutputStream fos = new FileOutputStream(savedInfoCentre.toString());
+        ObjectOutputStream os = new ObjectOutputStream(fos);
+        os.writeObject(newAdmin.getInfoCentre());
+        os.close();
+        fos.close();
+
+        //return to the AdminHome Activity
+        Intent intent2 = new Intent(this, AdminHome.class);
+        intent2.putExtra("UserKey", newAdmin);
+        startActivity(intent2);
+
+    }
+    
+    /**
+     * This method returns the admin back to the AdminHome
+     * @param View view the view for this method
+     */
+    public void goBack(View view){
+    	//go back to the AdminHome Activity
+        Intent intent = getIntent();
+        final Admin newAdmin = (Admin) intent.getSerializableExtra("UserKey");
+        Intent intent2 = new Intent(view.getContext(), AdminHome.class);
+        intent2.putExtra("UserKey", newAdmin);
+        startActivity(intent2);
+    }
+
+}

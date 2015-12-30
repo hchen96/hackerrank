@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/PIII/PIII/app/build/intermediates/pre-dexed/debug/debug_2418db25bbcec500870a51b6c2d813dca43464ba.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PIII/PIII/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.1_2752a76856003470424453534f749af8cd3fb7ab.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PIII/PIII/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_966d45c2708da20557025264b2d3b208b58c2040.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PIII/PIII/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_931d8a5daa418cf933d1dba86da122998de5fbdf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PIII/PIII/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_0d45c24b4bae20ec345151517dd5cd667f6bcc11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PIII/PIII/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_be3da2b862c185a329db5cb7ff7788c28f11492e.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PIII/PIII/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_4138075998eba475c12e6a01c44c5b856218b8ab.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

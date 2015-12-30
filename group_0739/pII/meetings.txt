@@ -1,0 +1,90 @@
+Minutes for Planning Meeting 11/7/15:
+
+
+Agreed to a merging of the two CRC models.  Will keep Darshan and Jian's class names in addition to some methods from Harry and Adam's design.
+Classes to be implemented based on Darshan and Jian's design:
+User -shared by both models
+Client -shared by both models
+Flight -shared by both models
+Itinerary -shared by both models
+Client -shared by both models
+Admin -shared by both models
+InfoCenter -called System in Adam/Harry's model
+ItineraryGenerator -unique to Darshan/Jian replaces gatherFlightPaths from Adam/Harry's model
+Methods/Instance Variables to be added based on Adam/Harry's design:
+Flight: cost variable and calculateTravelTime method
+Itinerary: addFlight method
+Data Types were largely similar between both models, where different, the most efficient data type was used.
+Agreed to start with the classes Flights and Itineraries, with Darshan and Jian implementing itinerary and Adam and Harry implementing flight.
+Both implementations are to be completed by Sunday night/Monday morning.
+Monday morning will be the date of the next meeting, on campus around 11:00 am.
+Each pairing will review the other's code and add any unit test cases that the others missed.
+During the next meeting, the remaining classes will be divided up with the hardest task(searching for itineraries using a graph) being given to the person(s) with the most Java experience
+Goals for next meeting:
+Finish Flight and Itinerary
+Tasks still to complete:
+Implement Client/Admin/User
+Implement InfoCenter
+Implement ItineraryGenerator
+
+Minutes for Status Meeting 11/9/15:
+
+The group met in person to discuss next steps and work on code.
+A - completed Flight.java fixed small error in calculate travel time based on JUnit from itineraries.
+H - completed almost all of the JUnits for flight (small error in one test case)
+J - completed JUnit for itineraries
+D - completed Itineraries class
+
+To complete for next meeting:
+A - complete all of Client.java that does not require ItineraryGenerator class
+H - fix final testCase for flight JUnit and complete JUnit for Client
+J - collaborate with D on infocentre/admin
+D - collaborate with J on infocentre/admin
+
+Next meeting scheduled for 11/12/15.
+
+Minutes for Status Meeting 11/12/15:
+
+Had a quick meeting to review progress and decide next steps.
+All group members were on track and had completed their assigned classes.
+Discussed searching algorithm and decided it would be best to have everyone work together as this is the last
+part of the project that needs to be implemented (aside from some fine tuning)
+A meeting was set for tomorrow (11/13) to discuss how to best go about this algorithm.
+All group members were asked to come up with some pseudocode algorithms that could be used as solutions to searching 
+for all possible itineraries.
+
+
+Minutes for Planning Meeting 11/13/15:
+
+Had a meeting to discuss current state of pII and next steps.
+Finished:
+Admin, Flight, Itinerary, Client (except the methods that require ItineraryGenerator), Infocentre
+Almost all of the JUnit tests for the above classes
+To do:
+Finish remaining JUnits
+Implement ItineraryGenerator
+Implement remaining methods that interact with ItineraryGenerator
+Polish the code (i.e. add any missing javadocs/comments, refactor any poorly named variables, use built-in Gregorian Calendar for calculating travel time, etc.)
+
+The main point of this meeting was to decide on an algorithm for ItineraryGenerator.
+After each group member gave possible solutions it was decided that we would use a DirectedGraph (a slight modification of the Graph class in E2).
+For the recursive algorithm, we decided to start from the node that contains the origin and then recurse through each of the adjacent nodes until we either
+reach the destination or reach a node with no adjacent nodes. If we reach a node that has already been seen then the algorithm also stops to prevent cycles.
+Each useful path (i.e. a path that ends in destination) will be added to an ArrayList of Flight.  each path of flights will then be made into an Itinerary and a 
+list of all the Itineraries will be returned.  
+
+Minutes for Status Meeting 11/17/15:
+
+Had a meeting to report final status of the project
+Finished:
+all Classes and cleaned up javadocs and comments
+To do:
+make sure everything works and polish up code(i.e missing javadocs and line length)
+
+main point is to report final status of the project and make sure all the code works.
+after the demonstrations we cleaned up more javadocs and comments and committed it for evaluation
+
+
+
+
+No meeting was scheduled at the time, however, we will likely meet up once more to make sure all the components work well together.

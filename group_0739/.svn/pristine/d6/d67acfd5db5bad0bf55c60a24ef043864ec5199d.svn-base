@@ -1,0 +1,363 @@
+/**
+ * 
+ */
+package pIII;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+/**
+ * @author grop_0739
+ * 
+ * This class represents the database the application uses.
+ * It stores all the flights as a Hashmap of Arraylist with the departure date
+ * as keys mapped to the list of flights on that date. 
+ * Also stores all clients and admins as 2 separate ArrayLists
+ * Class works as a System allowing various changes 
+ * and searches from the database
+ *
+ */
+public class Infocentre implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7544743054647223241L;
+	private HashMap<String, ArrayList<Flight>> flights;
+	//A hashmap of Arraylist of all the flights in the database with the 
+	//departure date as the keys mapped to the flights on the date.
+		
+	private ArrayList<Client> clients;
+	//An Arraylist of all clients registered to database.
+	
+	private ArrayList<Admin> admins;//An Arraylist of admins in the database.
+	/**
+	 * Creates an empty Infocentre with no data.
+	 * Only has empty hashmap for flights,empty Arraylists 
+	 * for admins and clients.
+	 * 
+	 */
+	public Infocentre(){
+		this.flights = new HashMap<String, ArrayList<Flight>>();
+		this.clients = new ArrayList<Client>();
+		this.admins = new ArrayList<Admin>();
+		
+	}
+	/**
+	 * Return the hashmap of arraylists of flights in the database.
+	 * @return 		The hashmap of flights.
+	 */
+	public HashMap<String, ArrayList<Flight>> getFlights() {
+		return flights;
+	}
+	
+	/**
+	 * Return the list of clients in the database.
+	 * @return 		The list of clients in the database.
+	 * 
+	 */
+	public ArrayList<Client> getClients() {
+		return clients;
+	}
+	
+	/**
+	 * Return the list of admins in the database.
+	 * @return 		The list of admins in the database.
+	 */
+	public ArrayList<Admin> getAdmins() {
+		return admins;
+	}
+	/**
+	 * Adds a single flight to the infocentre database.
+	 * @param f 	Flight to be added to database.
+	 */
+	public void AddFlight(Flight f){
+		String departdate = ( f.getDepartureDateTimeAsStr()).split(" ")[0];
+		if(this.flights.containsKey(departdate)){
+			if (this.flights.get(departdate).contains(f)){
+				System.out.println("Flight already exists in database");
+			}else{
+				this.flights.get(departdate).add(f);
+			}
+			
+			
+		}else{
+			this.flights.put(departdate, new ArrayList<Flight>());
+			this.flights.get(departdate).add(f);
+		}
+	}
+	
+	/**
+	 * Remove first instance of flight from database.
+	 * @param f		Flight to be removed from the database.
+	 */
+	public void RemoveFlight(Flight f){
+		this.flights.remove(f);
+	}
+	
+	/**
+	 * Add Client to database if client to be added has the same email 
+	 * as a client in the system do nothing.
+	 * @param client  	The Client to be added to the database.
+	 * 
+	 */
+	public void AddClient(Client client){
+		boolean check = true;
+		for (Client c : this.clients){
+			if (c.getEmail().equals(client.getEmail()))
+				check = false;
+		}
+		if (check){
+			this.clients.add(client);
+		}
+	}
+	
+	/**
+	 * Add admin to database.
+	 * @param admin 	The Admin to be added to the database.
+	 */
+	public void AddAdmin(Admin admin){
+		boolean check = true;
+		for (Admin a: this.admins){
+			if (a.getEmail().equals(admin.getEmail()))
+				check = false;
+		}
+		if (check){
+			this.admins.add(admin);
+		}
+		
+		
+	}
+	
+	/**
+	 * Helper Function 
+	 * Checks for a string parameter to be edited and edits it if its valid.
+	 * Valid parameters are lower case first, last, email, 
+	 * address and expirydate.
+	 * @param client 		The client whose info is to be edited.
+	 * @param parameter 	The parameter of the client info to be edited.
+	 * @param value 		The value the parameter is to be edited to.
+	 * @throws InvalidInputException  thrown if input is invalid
+	 */
+	
+	private void EditInfo(Client client, String parameter, 
+			String value) throws InvalidInputException{
+		if (parameter == "email"){
+			
+			client.setEmail(value);
+			return;
+			
+		}else if(parameter == "first"){
+			
+			client.setFirstName(value);
+			return;
+			
+		}else if(parameter == "last"){
+			
+			client.setLastName(value);
+			return;
+			
+		}else if(parameter == "address"){
+			
+			client.setAddress(value);
+			return;
+			
+		}else if(parameter == "expirydate"){
+			
+			client.setExpiryDate(value);
+			return;
+		}else{
+			throw new InvalidInputException("Invalid parameter selected");
+		}
+		
+	}
+	/**
+	 * Helper function 
+	 * Checks for an int parameter to be edited and edits it if its valid.
+	 * Only valid int parameter is creditcardno. 
+	 * @param client 		The client whose info is to be edited.
+	 * @param parameter 	The parameter of the client to be edited.
+	 * @param value			The value the parameter is to be changed to.
+	 * @throws InvalidInputException 
+	 */
+	
+	private void EditInfo(Client client, String parameter, 
+			int value) throws InvalidInputException{
+		if (parameter == "creditcardno"){
+			
+			client.setCreditCardNumber(value);
+			return;
+			
+		}else {
+			throw new InvalidInputException("Invalid parameter selected");
+		}
+	}
+	
+	/**
+	 *  Search for client in database and if it exists 
+	 *  edit client's given parameter with new value else does nothing
+	 *  @throws InvalidInput exception
+	 * @param client 		Client to be edited
+	 * @param parameter 	The info to be changed
+	 * @param value 		The new value to be changed into
+	 */
+	
+	public void EditClient(Client client,String parameter, 
+			String value )throws InvalidInputException{
+		
+		for(Client c : this.clients){
+			
+			if (c.equals(client)){
+				EditInfo(c,parameter,value);
+				
+				return;
+			}
+		throw new InvalidInputException("No such User in database");
+			
+		}
+	}
+	
+	/**
+	 * Search for client in database and if it exists. 
+	 * Edit client's given parameter with new value else does nothing.
+	 * @throws InvalidInput exception
+	 * @param client 		Client to be edited
+	 * @param parameter 	The info to be changed
+	 * @param value 		The new value to be changed into
+	 * @throws InvalidInputException 
+	 */
+	
+	public void EditClient(Client client ,String parameter, 
+			int value ) throws InvalidInputException{
+		for(Client c : this.clients){
+			if (c.equals(client)){
+				EditInfo(c,parameter,value);
+				return;
+			}
+			
+		}
+		
+		throw new InvalidInputException("No such user exists");
+	
+	}	
+	
+	/**
+	 * Searches for flight or flights that have a given departure date origin 
+	 * and destination and returns it if it exist.
+	 * @param departureDate 	The departure date of the flights we want 
+	 * 							to get.
+	 * @param origin			The origin of the flights we want to get.
+	 * @param destination		The destination of the flights we want to get.
+	 * @return A list of flights that fits the description given. 
+	 */
+	
+	public ArrayList<Flight> searchFlights(String departureDate, String origin,
+			String destination){
+		
+		if(!this.flights.isEmpty() && 
+				this.flights.keySet().contains(departureDate)){
+			ArrayList<Flight> allFlights =this.getFlights().get(departureDate);
+			ArrayList<Flight> searchedFlights = new ArrayList<Flight>();
+			
+			for(Flight f: allFlights){
+				if(f.getOrigin().equals(origin) && 
+						f.getDestination().equals(destination)){
+					searchedFlights.add(f);
+				}
+			}
+			return searchedFlights;
+		}
+		
+		return new ArrayList<Flight>();
+	}
+	
+	/**
+	 * Searches for a specific client in the database and returns it 
+	 * if the client doesn't exist does nothing.
+	 * @param email 		The email of the client we want to find.
+	 * @return  The client that has the specific email. 
+	 * 
+	 * No 2 clients have the same email so we use it as an identifier.
+	 */
+	
+	
+	public Client searchClient(String email){
+		for (Client c : this.clients){
+			if (c.getEmail().equals(email)){
+				return c;
+			}
+		}
+		return null;
+		
+		
+	}
+	/**
+	 * Takes in a hashmap of flights sorted by departure dates as its keys 
+	 * and reorganises it into a list.
+	 * @param flightMap 	A hashmap of flights sorted by dates as its keys.
+	 * @return A list of all the flights in the hashmap.
+	 */
+	
+	public ArrayList<Flight> allFlights(HashMap<String, 
+			ArrayList<Flight>> flightMap){
+		ArrayList<Flight> flights = new ArrayList<Flight>();
+		for(String s: flightMap.keySet()){
+			for(Flight f: flightMap.get(s)){
+				if(!flights.contains(f)){
+					flights.add(f);
+				}
+			}
+		}
+		return flights;
+	}
+	
+	/**
+	 * Uploads clients from a file given the file path.
+	 * @param input   The inputstream of the file to be uploaded.
+	 * @throws FileNotFoundException
+	 * @throws InvalidInputException 
+	 * @throws NumberFormatException 
+	 */
+	public void uploadClients(InputStream input)throws FileNotFoundException, 
+	NumberFormatException, InvalidInputException{
+		Scanner scanner = new Scanner(input);
+        String[] line;
+        Client client;
+        while(scanner.hasNextLine()) {
+        	line = scanner.nextLine().split(",");
+				client = new Client(line[1], line[0],this,
+						line[2],line[3],Long.parseLong(line[4]),line[5]);
+				this.AddClient(client);
+        
+        }
+        
+        scanner.close();
+	}
+	
+	/**
+	 * Takes in a csv file full of flights and uploads it to the infocentre.   
+	 * @param input   The inputstream of the file to be uploaded.
+	 * @throws FileNotFoundException
+	 * @throws InvalidInputException 
+	 * @throws NumberFormatException 
+	 */
+	public void uploadFlights(InputStream input)throws FileNotFoundException, 
+	NumberFormatException, InvalidInputException{
+		Scanner scanner = new Scanner(input);
+        String[] line;
+        Flight flight;
+        while(scanner.hasNextLine()) {
+        	line = scanner.nextLine().split(",");
+				flight = new Flight(Integer.parseInt(line[0]),line[1], 
+						line[2],line[3], line[4], line[5], 
+						Double.parseDouble(line[6]),Integer.parseInt(line[7]));
+				this.AddFlight(flight);
+			
+        }
+        scanner.close();
+	}
+	
+}
